@@ -1,0 +1,46 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="flex flex-col gap-1">
+      <label class="font-medium lable-required" for="name">Nombre del proyecto</label>
+      <input type="text" id="name" pInputText formControlName="name" />
+      <app-form-control-error [control]="nameCtrl" />
+    </div>
+    <div class="flex flex-col gap-1">
+      <label class="font-medium lable-required" for="documentTypeId">Tipo de documento </label>
+      <p-select
+        [options]="documentTypes()"
+        optionLabel="name"
+        class="w-full"
+        formControlName="documentTypeId"
+        optionLabel="id"
+        optionValue="id"
+      />
+      <app-form-control-error [control]="documentTypeIdCtrl" />
+    </div>
+    <div class="flex flex-col gap-1">
+      <label class="font-medium lable-required" for="numberDocument">Número de documento</label>
+      <input type="text" id="numberDocument" pInputText formControlName="numberDocument" />
+      <app-form-control-error [control]="numberDocumentCtrl" />
+    </div>
+    <div class="flex flex-col gap-1">
+      <label class="font-medium lable-required" for="email">Correo electrónico</label>
+      <input type="text" id="email" pInputText formControlName="email" />
+      <app-form-control-error [control]="emailCtrl" />
+    </div>
+    <div class="flex flex-col gap-1">
+      <label class="font-medium lable-required" for="phone">Teléfono</label>
+      <input type="text" id="phone" pInputText formControlName="phone" />
+      <app-form-control-error [control]="phoneCtrl" />
+    </div>
+    <div class="flex flex-row gap-4 col-span-2 justify-end">
+      <p-button
+        label="Cancel"
+        [outlined]="true"
+        icon="pi pi-times"
+        severity="secondary"
+        (onClick)="onCancel()"
+      />
+      <p-button type="submit" label="Guardar" icon="pi pi-save" [disabled]="form.invalid" />
+    </div>
+  </div>
+</form>

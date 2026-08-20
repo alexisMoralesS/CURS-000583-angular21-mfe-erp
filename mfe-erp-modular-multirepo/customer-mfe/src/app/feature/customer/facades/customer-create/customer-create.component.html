@@ -1,0 +1,11 @@
+<p-dialog
+  header="Nuevo Cliente"
+  [(visible)]="visible"
+  [modal]="true"
+  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <app-customer-form-create [documentTypes]="documentTypes()" (saved)="customerSaved($event)" (cancel)="visible.set(false)" />
+</p-dialog>

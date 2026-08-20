@@ -1,0 +1,18 @@
+ng generate application <name>
+ng g library libErpModular
+
+ng build  libErpModular --watch --configuration development
+ng s dashboard-mfe
+ng s customer-mfe
+ng s product-mfe
+ng s sale-mfe
+ng s host
+
+ng g @angular-architects/native-federation:init --project=host --port 4200 --type dynamic-host
+ng g @angular-architects/native-federation:init --project=dashboard-mfe --port=4201 --type=remote
+ng g @angular-architects/native-federation:init --project=customer-mfe --port=4202 --type=remote
+ng g @angular-architects/native-federation:init --project=product-mfe --port=4203 --type=remote
+ng g @angular-architects/native-federation:init --project=sale-mfe --port=4204 --type=remote
+
+
+

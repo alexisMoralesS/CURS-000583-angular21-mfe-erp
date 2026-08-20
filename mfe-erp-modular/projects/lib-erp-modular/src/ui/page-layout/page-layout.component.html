@@ -1,0 +1,21 @@
+<div class="flex flex-col p-4">
+  <div class="grid grid-cols-1 md:grid-cols-2 mb-4">
+    <div class="text-2xl">
+      @if (title(); as tpl) {
+        <ng-container *ngTemplateOutlet="tpl" />
+      }
+    </div>
+
+    <div class="flex justify-end">
+      @if (actions(); as tpl) {
+        <ng-container *ngTemplateOutlet="tpl" />
+      }
+    </div>
+  </div>
+
+  <div class="w-full">
+    @if (content(); as tpl) {
+      <ng-container *ngTemplateOutlet="tpl" />
+    }
+  </div>
+</div>

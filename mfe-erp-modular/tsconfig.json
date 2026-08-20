@@ -1,0 +1,72 @@
+/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
+/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "paths": {
+      "lib-erp-modular": ["./dist/lib-erp-modular"]
+    },
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "preserve"
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  },
+  "files": [],
+  "references": [
+    {
+      "path": "./projects/host/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/host/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/dashboard-mfe/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/dashboard-mfe/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/customer-mfe/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/customer-mfe/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/lib-erp-modular/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/lib-erp-modular/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/product-mfe/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/product-mfe/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/product-mfe/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/product-mfe/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/sale-mfe/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/sale-mfe/tsconfig.spec.json"
+    }
+  ]
+}

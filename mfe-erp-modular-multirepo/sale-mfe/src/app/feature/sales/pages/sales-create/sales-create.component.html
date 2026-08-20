@@ -1,0 +1,12 @@
+<lib-page-layout>
+  <ng-template #title>Nueva Venta </ng-template>
+  <ng-template #content>
+    <app-sale-form-create
+      (cancel)="(false)"
+      [catalogs]="catalogs()"
+      (saved)="onSaved($event)"
+      (cancel)="onCancel()"
+    />
+  </ng-template>
+</lib-page-layout>
+<p-toast appendTo="body" position="bottom-right" />

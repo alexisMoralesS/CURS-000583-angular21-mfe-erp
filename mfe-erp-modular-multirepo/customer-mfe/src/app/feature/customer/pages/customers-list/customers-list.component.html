@@ -1,0 +1,15 @@
+<lib-page-layout>
+  <ng-template #title> Clientes </ng-template>
+  <ng-template #actions>
+    <p-button label="Nuevo" icon="pi pi-plus" (onClick)="customerCreateVisible.set(true)" />
+  </ng-template>
+  <ng-template #content>
+    @if (!customerService.customersResource.isLoading()) {
+      <app-customer-list-table [customers]="customers()" />
+    }
+  </ng-template>
+</lib-page-layout>
+<app-customer-create
+  [(visible)]="customerCreateVisible"
+  (created)="customerService.customersResource.reload()"
+/>

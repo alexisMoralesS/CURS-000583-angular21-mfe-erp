@@ -1,0 +1,28 @@
+01.- Library
+- ng build libErpModular --configuration production
+- cd dist/lib-erp-modular/
+- npm pack
+- cd ../..
+- npm install ./dist/lib-erp-modular/lib-erp-modular-0.0.1.tgz
+
+02.- APPLICATIONES
+- docker builder prune -a -f
+
+- ng build dashboard-mfe
+- ng build customer-mfe
+- ng build product-mfe
+- ng build sale-mfe
+- ng build host
+
+- docker build --rm=true --no-cache -t dashboard-mfe:1.0.0 --build-arg APPLICATION=dashboard-mfe .
+- docker build --rm=true --no-cache -t customer-mfe:1.0.0 --build-arg APPLICATION=customer-mfe .
+- docker build --rm=true --no-cache -t product-mfe:1.0.0 --build-arg APPLICATION=product-mfe .
+- docker build --rm=true --no-cache -t sale-mfe:1.0.0 --build-arg APPLICATION=sale-mfe .
+- docker build --rm=true --no-cache -t host:1.0.0 --build-arg APPLICATION=host .
+
+03.- DOCKER COMPOSE
+docker-compose up -d
+
+=================================================================
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\build-and-deploy.ps1

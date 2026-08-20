@@ -1,0 +1,22 @@
+<p-inputgroup>
+  <p-autocomplete
+    [ngModel]="selectedProduct()"
+    (ngModelChange)="selectedProduct.set($event)"
+    [suggestions]="products()"
+    (completeMethod)="search($event)"
+    optionLabel="name"
+    appendTo="body"
+    [showClear]="true"
+    (onClear)="onClear()"
+    (onSelect)="onSelect($event)"
+  />
+  <p-inputgroup-addon>
+    <p-button
+      icon="pi pi-plus"
+      pTooltip="Agregar cliente"
+      tooltipPosition="bottom"
+      (onClick)="productCreateVisible.set(true)"
+    />
+  </p-inputgroup-addon>
+</p-inputgroup>
+<app-product-create [(visible)]="productCreateVisible" (created)="onCreated($event)" />

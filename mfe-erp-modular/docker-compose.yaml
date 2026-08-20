@@ -1,0 +1,38 @@
+name: erp-modular-mfe-monorepo
+
+services:
+  host:
+    image: host:1.0.0
+    container_name: host
+    ports:
+      - "4200:80"
+    restart: always
+    networks:
+      - app-store-network
+  dashboard-mfe:
+    image: dashboard-mfe:1.0.0
+    container_name: dashboard-mfe
+    restart: always
+    networks:
+      - app-store-network
+  customer-mfe:
+    image: customer-mfe:1.0.0
+    container_name: customer-mfe
+    restart: always
+    networks:
+      - app-store-network
+  product-mfe:
+    image: product-mfe:1.0.0
+    container_name: product-mfe
+    restart: always
+    networks:
+      - app-store-network
+  sale-mfe:
+    image: sale-mfe:1.0.0
+    container_name: sale-mfe
+    restart: always
+    networks:
+      - app-store-network
+networks:
+  app-store-network:
+    driver: bridge

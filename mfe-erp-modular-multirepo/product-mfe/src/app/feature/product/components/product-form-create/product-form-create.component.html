@@ -1,0 +1,61 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="flex flex-col gap-1">
+      <label class="font-medium lable-required" for="name">Código</label>
+      <input type="text" id="name" pInputText formControlName="code" />
+      <app-form-control-error [control]="codeCtrl" />
+    </div>
+    <div class="flex flex-col gap-1">
+      <label class="font-medium lable-required" for="documentTypeId">Nombre del propducto </label>
+      <input type="text" id="documentTypeId" pInputText formControlName="name" />
+      <app-form-control-error [control]="nameCtrl" />
+    </div>
+    <div class="flex flex-col gap-1">
+      <label class="font-medium lable-required" for="documentNumber">Categoría</label>
+      <p-select
+        [options]="productCategories()"
+        placeholder="Seleccionar Categoría"
+        class="w-full"
+        formControlName="categoryId"
+        optionLabel="name"
+        optionValue="id"
+        appendTo="body"
+      />
+      <app-form-control-error [control]="categoryIdCtrl" />
+    </div>
+    <div class="flex flex-col gap-1">
+      <label class="font-medium lable-required" for="email">Marca</label>
+      <p-select
+        [options]="productBrands()"
+        placeholder="Seleccionar marca"
+        class="w-full"
+        formControlName="brandId"
+        optionLabel="name"
+        optionValue="id"
+        ,
+        appendTo="body"
+      />
+      <app-form-control-error [control]="brandIdCtrl" />
+    </div>
+    <div class="flex flex-col gap-1">
+      <label class="font-medium lable-required" for="phone">Precio</label>
+      <input type="text" id="phone" pInputText formControlName="price" />
+      <app-form-control-error [control]="priceCtrl" />
+    </div>
+    <div class="flex flex-col gap-1">
+      <label class="font-medium lable-required" for="phone">Stock Mínimo</label>
+      <input type="text" id="phone" pInputText formControlName="minStock" />
+      <app-form-control-error [control]="minStockCtrl" />
+    </div>
+    <div class="flex flex-row gap-4 col-span-2 justify-end">
+      <p-button
+        label="Cancel"
+        [outlined]="true"
+        icon="pi pi-times"
+        severity="secondary"
+        (onClick)="onCancel()"
+      />
+      <p-button type="submit" label="Guardar" icon="pi pi-save" [disabled]="form.invalid" />
+    </div>
+  </div>
+</form>

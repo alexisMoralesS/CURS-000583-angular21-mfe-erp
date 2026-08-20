@@ -1,0 +1,12 @@
+<lib-page-layout>
+  <ng-template #title> Ventas </ng-template>
+  <ng-template #actions>
+    <a [mfeRouterLink]="'create'" mfeBase="sales" pButton icon="pi pi-plus">
+      <span pButtonLabel> Nueva venta</span>
+    </a>
+  </ng-template>
+  <ng-template #content>
+    <app-sale-list-table [sales]="sales()" (action)="onAction($event)" />
+  </ng-template>
+</lib-page-layout>
+<app-sale-show-dialog [(visible)]="saleShowDialog" [sale]="saleShow()" />

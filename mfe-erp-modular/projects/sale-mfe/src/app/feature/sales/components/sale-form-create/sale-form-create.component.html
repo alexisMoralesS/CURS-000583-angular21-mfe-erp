@@ -1,0 +1,186 @@
+<form [formGroup]="formSale" (ngSubmit)="onSubmit()">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="flex flex-col gap-1">
+      <label class="font-medium lable-required" for="documentTypeId">Tipo de comprobante</label>
+      <p-select
+        [options]="typeReceipts()"
+        optionLabel="name"
+        optionValue="id"
+        placeholder="Seleccionar tipo de comprobante"
+        class="w-full"
+        formControlName="typeReceiptId"
+      />
+    </div>
+    <div class="flex flex-col gap-1">
+      <label class="font-medium lable-required" for="documentTypeId">Serie</label>
+      <p-select
+        [options]="series()"
+        optionLabel="number"
+        optionValue="id"
+        placeholder="Seleccionar tipo de comprobante"
+        class="w-full"
+        formControlName="seriesId"
+      />
+    </div>
+    <div class="flex flex-col gap-1">
+      <label class="font-medium lable-required" for="documentTypeId">Método de pago</label>
+      <p-select
+        [options]="paymentMethods()"
+        optionLabel="name"
+        optionValue="id"
+        placeholder="Seleccionar método de pago"
+        class="w-full"
+        formControlName="paymentMethodId"
+      />
+    </div>
+    <div class="flex flex-col gap-1">
+      <label class="font-medium lable-required" for="documentTypeId">Cliente </label>
+      @if (customerPick()) {
+        <ng-container *ngComponentOutlet="customerPick()"></ng-container>
+      }
+    </div>
+    <div class="flex col-span-3 gap-1">
+      <p-table [value]="products()" stripedRows class="w-full">
+        <ng-template #header>
+          <tr>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Subtotal</th>
+            <th>Acciones</th>
+          </tr>
+        </ng-template>
+        <ng-template #body let-product>
+          <tr>
+            <td>{{ product.product }}</td>
+            <td>{{ product.price }}</td>
+            <td>
+              <input
+                pInputText
+                type="number"
+                min="0"
+                name="productQuantity"
+                [ngModelOptions]="{ standalone: true }"
+                [(ngModel)]="product.quantity"
+                (ngModelChange)="changeQuantity(product.id, $event)"
+              />
+              @if (product.quantity == 0 || product.quantity == null) {
+                <p>
+                  <small class="text-red-500">Ingrese un número mayor o igual a 1.</small>
+                </p>
+              }
+            </td>
+            <td>{{ product.subtotal }}</td>
+            <td>
+              <div class="flex flex-row gap-2">
+                <p-button
+                  severity="danger"
+                  variant="outlined"
+                  icon="pi pi-trash"
+                  (onClick)="onDeleteProduct(product)"
+                />
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template #footer>
+          @if (productAdding()) {
+            <tr>
+              <td>
+                @if (productPick()) {
+                  <ng-container *ngComponentOutlet="productPick()"></ng-container>
+                }
+              </td>
+              <td>{{ formAdd().value().price }}</td>
+              <td>
+                <input pInputText type="number" [formField]="formAdd.quantity" />
+                @if (formAdd().value().quantity == 0 || formAdd().value().quantity == null) {
+                  <p>
+                    <small class="text-red-500">debe ingresar un número mayor a 1.</small>
+                  </p>
+                }
+              </td>
+              <td>
+                {{ formAdd().value().subtotal }}
+              </td>
+              <td>
+                <div class="flex flex-row gap-2">
+                  <p-button
+                    severity="success"
+                    variant="outlined"
+                    icon="pi pi-check"
+                    [disabled]="formAdd().invalid()"
+                    (onClick)="onAddProduct()"
+                  />
+                  <p-button
+                    severity="danger"
+                    variant="outlined"
+                    icon="pi pi-times"
+                    (onClick)="onCancelAddProduct()"
+                  />
+                </div>
+              </td>
+            </tr>
+          } @else {
+            <tr>
+              <td colspan="5">
+                <div class="flex justify-center">
+                  <p-button
+                    label="Agregar productos"
+                    icon="pi pi-plus"
+                    (onClick)="productAddTr()"
+                  />
+                </div>
+              </td>
+            </tr>
+          }
+          @if (totals()) {
+            <tr>
+              <td colspan="3"></td>
+              <td>
+                <div class="text-end">Subtotal</div>
+              </td>
+              <td>
+                <div class="text-end">{{ totals()?.subtotal | currency: 'S/ ' }}</div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3"></td>
+              <td>
+                <div class="text-end">IGV</div>
+              </td>
+              <td>
+                <div class="text-end">{{ totals()?.igv | currency: 'S/ ' }}</div>
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="3"></td>
+              <td>
+                <div class="text-end">Total</div>
+              </td>
+              <td>
+                <div class="text-end">{{ totals()?.total | currency: 'S/ ' }}</div>
+              </td>
+            </tr>
+          }
+        </ng-template>
+      </p-table>
+    </div>
+    <div class="flex flex-row gap-4 col-span-3 justify-end mt-4">
+      <p-button
+        label="Cancel"
+        [outlined]="true"
+        icon="pi pi-times"
+        severity="secondary"
+        (onClick)="onCancel()"
+      />
+      <p-button
+        type="submit"
+        label="Guardar"
+        icon="pi pi-save"
+        [disabled]="!saveButtonInvalid() || formSale.invalid"
+      />
+    </div>
+  </div>
+</form>

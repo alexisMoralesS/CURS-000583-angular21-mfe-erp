@@ -1,0 +1,6 @@
+{
+  "dashboard-mfe": "http://localhost:4201/remoteEntry.json",
+  "customer-mfe": "http://localhost:4202/remoteEntry.json",
+  "product-mfe": "http://localhost:4203/remoteEntry.json",
+  "sale-mfe": "http://localhost:4204/remoteEntry.json"
+}

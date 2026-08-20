@@ -1,0 +1,14 @@
+@if (control()?.invalid && (control()?.dirty || control()?.touched)) {
+  <span class="text-sm text-red-500">
+    @let errors = control()?.errors ?? {};
+    @if (errors?.['required']) {
+      Este campo es requerido.
+    } @else if (errors['email']) {
+      Ingrese un correo electrónico válido.
+    } @else if (errors['minlength']) {
+      Mínimo {{ errors['minlength'].requiredLength }} caracteres.
+    } @else if (errors['passwordsMismatch']) {
+      Las contraseñas no coinciden.
+    }
+  </span>
+}

@@ -1,0 +1,6 @@
+{
+  "dashboard-mfe": "/dashboard/remoteEntry.json",
+  "customer-mfe": "/customer/remoteEntry.json",
+  "product-mfe": "/product/remoteEntry.json",
+  "sale-mfe": "/sale/remoteEntry.json"
+}

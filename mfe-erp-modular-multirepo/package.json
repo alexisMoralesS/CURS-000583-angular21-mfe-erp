@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "lib-erp-modular": "file:lib-erp-modular-0.0.1.tgz"
+  }
+}

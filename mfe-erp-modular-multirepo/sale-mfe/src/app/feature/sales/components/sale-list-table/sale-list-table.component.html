@@ -1,0 +1,31 @@
+<p-table [value]="sales()" [tableStyle]="{ 'min-width': '50rem' }">
+  <ng-template #header>
+    <tr>
+      <th>N° Venta</th>
+      <th>Documento</th>
+      <th>Fecha</th>
+      <th>Cliente</th>
+      <th>Total</th>
+      <th>Acciones</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-sale>
+    <tr>
+      <td>{{ sale.serie.number + '-' + sale.id }}</td>
+      <td>{{ sale.typeReceipt.name }}</td>
+      <td>{{ sale.createdAt | date: 'yyyy-MM-dd H:mm' }}</td>
+      <td>{{ sale.customerName }}</td>
+      <td>{{ sale.total | currency: 'S/ ' }}</td>
+      <td>
+        <div class="flex gap-2">
+          <p-button
+            icon="pi pi-eye"
+            outlined
+            severity="info"
+            (onClick)="onAction(saleListTableAction.SHOW, sale.id)"
+          />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

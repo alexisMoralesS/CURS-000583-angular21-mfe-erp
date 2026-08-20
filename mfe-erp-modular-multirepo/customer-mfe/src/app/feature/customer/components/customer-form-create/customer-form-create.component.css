@@ -1,0 +1,4 @@
+.lable-required::after {
+  content: ' *';
+  color: #991b1b;
+}
